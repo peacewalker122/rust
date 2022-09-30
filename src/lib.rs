@@ -1,13 +1,33 @@
+
 pub struct Point{
-    pub(crate) x: i64,
-    pub(crate) y: i64,
+    pub x: i64,
+    pub y: i64,
 }
+
+pub struct Set{
+    pub x: [i64;10],
+    pub y: [i64;10],
+}
+
 pub struct Rectangle{
     pub(crate) p1: Point,
     pub(crate) p2: Point,
 }
 pub struct Encrypt{
     pub(crate) p1: Point,
+}
+
+pub struct Sets{
+    pub p1: Set,
+}
+
+pub trait SetMath {
+    fn sum(self: &Self) -> i64;
+    fn union(self: &Self) -> [i64;20];
+}
+#[allow(dead_code)]
+enum Color{
+    Colors {r:i64,g:i64,b:i64}
 }
 
 pub fn sumodd_number(up_to:u32) -> u32{
@@ -56,10 +76,11 @@ pub fn odd_or_even(num: i32){
         }
     }
     
-pub fn bubblesort<T: Ord>(array:&mut[T]) {
+pub fn bubblesort<T: Ord>(array:&mut [T]) {
+
         for i in 0..array.len() {
             for j in 0..array.len()-1-i{
-                
+
                 if array[j] < array[j+1]{
                     array.swap(j, j+1)
                 }
@@ -151,4 +172,45 @@ pub fn bubblesort<T: Ord>(array:&mut[T]) {
                 println!("Hello, {}",s)
             }
         }
+    }
+
+    impl Set {
+        pub fn new(x: [i64;10] , y: [i64;10])->Set{
+            Set { x: x, y: y }
+        }
+    }
+
+    impl SetMath for Sets {
+        fn sum(self: &Self) -> i64 {
+        let Set { x:x1, y:y1 } = self.p1;
+        //let result:[i64;10]; 
+        let mut r = 0;
+        (0..x1.len()).for_each(|i| {
+            r += x1[i];
+            r += y1[i];
+        });
+        r.abs()
+    }
+
+        fn union(self: &Self) -> [i64;20] {
+        let Set { x:x1, y:y1 } = self.p1;
+        let mut arr3:[i64;20]= [0;20];
+        
+        let mut i:usize = 0;
+        let mut j:usize = 0;
+
+        while i < 10{
+            arr3[i] = x1[i];
+            i+=1;
+        }
+
+        while j < 10{
+            arr3[i] = y1[j];
+            i+=1;
+            j+=1;
+        }
+
+        arr3
+    }
+    
     }

@@ -1,5 +1,7 @@
 mod lib;
 use lib::my_mod::nested::hello as hellofunc;
+use lib::SetMath;
+
 fn main() {
     let y = 7 + 5;
     let p: String = String::from("test");
@@ -39,8 +41,16 @@ fn main() {
     println!("The gcd is {}",encyrpt.gcd());
     println!("The lcd is {}",encyrpt.lcd());
 
+    let x1:[i64;10] = [2,32,2,5,66,87,88,8,34,3];
+    let y1:[i64;10] = [29,32,39,4,76,67,20,8,34,3];
+
+    let sets = lib::Sets{
+        p1:lib::Set::new(x1, y1)
+    };
+    println!("the Total sum of the two array is: {:?}",sets.sum());
+    println!("the Union of the two array is: {:?}",sets.union());
     println!("printing pyramid");
-    lib::my_mod::starprint(3);
+    lib::my_mod::starprint(10);
 
     println!("printing hellofunc");
     hellofunc("Pigeon".to_string())
