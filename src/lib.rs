@@ -1,3 +1,5 @@
+use std::i32;
+
 
 pub struct Point{
     pub x: i64,
@@ -25,6 +27,15 @@ pub trait SetMath {
     fn sum(self: &Self) -> i64;
     fn union(self: &Self) -> [i64;20];
 }
+
+pub trait Print{
+    fn print_me(&self);
+}
+
+pub struct Generic<T: Print>{
+   pub arg: T
+}
+
 #[allow(dead_code)]
 enum Color{
     Colors {r:i64,g:i64,b:i64}
@@ -212,5 +223,31 @@ pub fn bubblesort<T: Ord>(array:&mut [T]) {
 
         arr3
     }
-    
+
+    }
+
+    impl Print for String{
+        fn print_me(&self) {
+            println!("This is String")
+        }
+    }
+    impl Print for i32 {
+        fn print_me(&self) {
+        println!("this is integer")
+    }
+    }
+    impl Print for bool{
+        fn print_me(&self) {
+        println!("this is boolean")
+    }
+    }
+    impl Print for f32{
+        fn print_me(&self) {
+        println!("this is float")
+    }
+    }
+    impl Print for [i32] {
+        fn print_me(&self) {
+        println!("this is array of integer")
+    }
     }

@@ -1,0 +1,1 @@
+- For now i learn the introduction of rust in their official website.

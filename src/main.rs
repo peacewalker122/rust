@@ -1,6 +1,7 @@
 mod lib;
 use lib::my_mod::nested::hello as hellofunc;
 use lib::SetMath;
+use lib::Print;
 
 fn main() {
     let y = 7 + 5;
@@ -50,6 +51,10 @@ fn main() {
     println!("the Total sum of the two array is: {:?}",sets.sum());
     println!("the Union of the two array is: {:?}",sets.union());
     println!("printing pyramid");
+    
+    let generic = lib::Generic::<String>{ arg: "3838".to_string(), };
+    generic.arg.print_me();
+
     lib::my_mod::starprint(10);
 
     println!("printing hellofunc");
