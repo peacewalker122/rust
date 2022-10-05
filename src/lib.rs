@@ -1,4 +1,4 @@
-use std::i32;
+use std::{i32};
 
 
 pub struct Point{
@@ -39,6 +39,18 @@ pub struct Generic<T: Print>{
 #[allow(dead_code)]
 enum Color{
     Colors {r:i64,g:i64,b:i64}
+}
+
+//use crossbeam::channel;
+#[allow(dead_code,unused_imports,unused_variables)]
+use std::thread;
+
+
+pub fn vec_sum(c: Vec<i32>)->i32{
+    c.iter()
+    .filter(|&x|x % 2 == 0)
+    .map(|&x|x * 1)
+    .sum()
 }
 
 pub fn sumodd_number(up_to:u32) -> u32{

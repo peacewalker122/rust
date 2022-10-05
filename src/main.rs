@@ -1,4 +1,7 @@
 mod lib;
+use std::thread;
+use std::vec;
+
 use lib::my_mod::nested::hello as hellofunc;
 use lib::SetMath;
 use lib::Print;
@@ -58,5 +61,11 @@ fn main() {
     lib::my_mod::starprint(10);
 
     println!("printing hellofunc");
-    hellofunc("Pigeon".to_string())
+    hellofunc("Pigeon".to_string());
+
+    let my_vect = vec![1,2,3,4,5,6,7,8,9,10];
+    let handle = thread::spawn(|| lib::vec_sum(my_vect));
+    let sum = handle.join().unwrap();
+    println!("my_vector sum is: {}",sum)
+    
 }
