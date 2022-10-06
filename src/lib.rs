@@ -1,5 +1,4 @@
-use std::{i32};
-
+use std::{i32, env, fs};
 
 pub struct Point{
     pub x: i64,
@@ -39,6 +38,19 @@ pub struct Generic<T: Print>{
 #[allow(dead_code)]
 enum Color{
     Colors {r:i64,g:i64,b:i64}
+}
+
+pub fn printtxt(s:String)->String{
+    let s= fs::read_to_string(s)
+    .expect("Should have been able to read the file");
+
+    return s
+}
+
+pub fn printfile()-> Vec<String>{
+    let s:Vec<String> = env::args().collect();
+    println!("length of the program is {}",s.len());
+    return s;
 }
 
 //use crossbeam::channel;

@@ -1,10 +1,12 @@
 mod lib;
+
 use std::thread;
 use std::vec;
 
 use lib::my_mod::nested::hello as hellofunc;
 use lib::SetMath;
 use lib::Print;
+
 
 fn main() {
     let y = 7 + 5;
@@ -66,6 +68,18 @@ fn main() {
     let my_vect = vec![1,2,3,4,5,6,7,8,9,10];
     let handle = thread::spawn(|| lib::vec_sum(my_vect));
     let sum = handle.join().unwrap();
-    println!("my_vector sum is: {}",sum)
-    
+    println!("my_vector sum is: {}",sum);
+    let s = lib::printfile();
+    //println!("result: {:?}",s);
+    for r in 1..s.len() {
+        println!("result: {}",&s[r]);    
+    }
+
+    let file_path = &s[2];
+
+    let contents = lib::printtxt(file_path.to_string());
+
+    println!("With text:\n{contents}");
+
+
 }
